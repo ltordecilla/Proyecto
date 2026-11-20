@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="601.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ferreteria.controllers.MenuController">
+
+    <children>
+      <AnchorPane layoutX="6.0" layoutY="10.0" prefHeight="577.0" prefWidth="602.0">
+         <children>
+            <ImageView fitHeight="577.0" fitWidth="602.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Hardware%20Store%20Workshop%20Display.png" />
+               </image>
+            </ImageView>
+      
+                    <VBox layoutX="78.0" layoutY="166.0" prefHeight="378.0" prefWidth="284.0" spacing="15.0">
+      
+                        <children>
+      
+                            <Button fx:id="btnProductos" maxWidth="Infinity" onAction="#abrirProductos" prefHeight="45.0" text="GESTIÓN DE PRODUCTOS" />
+      
+                            <Button fx:id="btnVentas" maxWidth="Infinity" onAction="#abrirVentas" prefHeight="45.0" prefWidth="299.0" text="REALIZAR VENTAS" />
+      
+                                  <Button fx:id="btnCarrito" maxWidth="Infinity" onAction="#abrirCarrito" prefHeight="45.0" text="CARRITO DE COMPRAS" />
+      
+                            <Button fx:id="btnDeseos" maxWidth="Infinity" onAction="#abrirDeseos" prefHeight="45.0" text="LISTA DE DESEOS" />
+      
+                            <Button fx:id="btnHistorial" maxWidth="Infinity" onAction="#abrirHistorial" prefHeight="45.0" text="HISTORIAL DE COMPRAS" />
+      
+                            <Button fx:id="btnReportes" maxWidth="Infinity" onAction="#abrirReportes" prefHeight="45.0" text="REPORTES" />
+             <Button layoutX="275.0" layoutY="520.0" onAction="#abrirCatalogo" prefHeight="45.0" prefWidth="350.0" text="VER CATÁLOGO DE PRODUCTOS" />
+      
+                            <Button fx:id="btnCerrarSesion" maxWidth="Infinity" onAction="#cerrarSesion" prefHeight="45.0" text="CERRAR SESIÓN" />
+                  </children>
+              </VBox>
+      
+              <Label fx:id="lblBienvenida" layoutX="180.0" layoutY="105.0" style="-fx-font-size: 16px;" text="Bienvenido" textFill="#fff7f70d" />
+         </children>
+      </AnchorPane>
+
+    </children>
+</AnchorPane>

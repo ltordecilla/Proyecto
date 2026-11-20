@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ferreteria.controllers.VentasController"
+            prefWidth="1000" prefHeight="650">
+
+    <top>
+        <VBox spacing="10"
+              style="-fx-background-color: #263238; -fx-padding: 20;">
+            <Label text="GESTION DE VENTAS"
+                   style="-fx-text-fill: white; -fx-font-size: 25px; -fx-font-weight: bold;"/>
+            <Label text="Consulta las ventas registradas"
+                   style="-fx-text-fill: white;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="20" style="-fx-padding: 25;">
+
+            <HBox spacing="20">
+                <VBox spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 20;">
+                    <Label text="TOTAL DE VENTAS"/>
+                    <Label fx:id="lblTotalVentas" text="0"
+                           style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+
+                <VBox spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 20;">
+                    <Label text="INGRESOS TOTALES"/>
+                    <Label fx:id="lblIngresos" text="0.00"
+                           style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+                </VBox>
+            </HBox>
+
+            <Label text="HISTORIAL DE VENTAS"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+            <TableView fx:id="tablaVentas" prefHeight="350">
+                <columns>
+                    <TableColumn fx:id="colNumero"
+                                 text="Numero" prefWidth="100"/>
+                    <TableColumn fx:id="colFecha"
+                                 text="Fecha" prefWidth="180"/>
+                    <TableColumn fx:id="colProductos"
+                                 text="Productos" prefWidth="400"/>
+                    <TableColumn fx:id="colTotal"
+                                 text="Total" prefWidth="150"/>
+                </columns>
+            </TableView>
+
+            <HBox spacing="12">
+                <Button text="VER DETALLE"
+                        onAction="#verDetalle"/>
+
+                <Button text="ACTUALIZAR"
+                        onAction="#actualizarTabla"/>
+
+                <Button text="VOLVER AL MENU"
+                        onAction="#volverMenu"/>
+            </HBox>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+

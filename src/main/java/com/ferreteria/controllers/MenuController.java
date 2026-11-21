@@ -69,35 +69,18 @@ public class MenuController {
         }
     }
 
-    @FXML
-    private void abrirCarrito() {
-        if (verificarAdministrador()) {
-            abrirVentana(
-                    "/fxml/Carrito.fxml",
-                    "Mi carrito"
-            );
-        }
-    }
+@FXML
+private void abrirHistorial() {
 
-    @FXML
-    private void abrirHistorial() {
-        if (verificarAdministrador()) {
-            abrirVentana(
-                    "/fxml/Historial.fxml",
-                    "Historial de compras"
-            );
-        }
-    }
+    if (verificarAdministrador()) {
 
-    @FXML
-    private void abrirDeseos() {
-        if (verificarAdministrador()) {
-            abrirVentana(
-                    "/fxml/Deseos.fxml",
-                    "Lista de deseos"
-            );
-        }
+        abrirVentana(
+                "/fxml/HistorialAdmin.fxml",
+                "Historial general de compras"
+        );
     }
+}
+
 
     @FXML
     private void abrirReportes() {

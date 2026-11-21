@@ -57,15 +57,16 @@ public class MenuClienteController {
         }
     }
 
-    @FXML
-    private void abrirHistorial() {
-        if (verificarCliente()) {
-            abrirVentana(
-                "/fxml/Historial.fxml",
+@FXML
+private void abrirHistorial() {
+
+    if (verificarCliente()) {
+        abrirVentana(
+                "/fxml/HistorialCliente.fxml",
                 "Mi historial de compras"
-            );
-        }
+        );
     }
+}
 
     @FXML
     private void cerrarSesion() {

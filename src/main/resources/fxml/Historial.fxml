@@ -1,10 +1,14 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0"
+<AnchorPane prefHeight="600.0"
+            prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.ferreteria.controllers.HistorialController">
@@ -26,19 +30,23 @@
 
                 <TableColumn fx:id="colNumero"
                              text="N.º Compra"
-                             prefWidth="100.0"/>
+                             prefWidth="90.0"/>
+
+                <TableColumn fx:id="colCliente"
+                             text="Cliente"
+                             prefWidth="170.0"/>
 
                 <TableColumn fx:id="colFecha"
                              text="Fecha"
-                             prefWidth="170.0"/>
+                             prefWidth="160.0"/>
 
                 <TableColumn fx:id="colProductos"
                              text="Productos"
-                             prefWidth="450.0"/>
+                             prefWidth="320.0"/>
 
                 <TableColumn fx:id="colTotal"
                              text="Total"
-                             prefWidth="180.0"/>
+                             prefWidth="160.0"/>
 
             </columns>
         </TableView>
@@ -56,4 +64,5 @@
                 onAction="#volverMenu"/>
 
     </children>
+
 </AnchorPane>

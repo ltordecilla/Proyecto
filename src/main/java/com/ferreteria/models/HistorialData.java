@@ -14,15 +14,18 @@ public class HistorialData {
         private List<String> productos;
         private double total;
         private String usuario;
+        private String nombreCliente;
 
         public Compra(int numero, List<String> productos,
-                      double total, String usuario) {
+                      double total, String usuario,
+                      String nombreCliente) {
 
             this.numero = numero;
             this.fecha = LocalDateTime.now();
             this.productos = new ArrayList<>(productos);
             this.total = total;
             this.usuario = usuario;
+            this.nombreCliente = nombreCliente;
         }
 
         public int getNumero() {
@@ -44,10 +47,15 @@ public class HistorialData {
         public String getUsuario() {
             return usuario;
         }
+
+        public String getNombreCliente() {
+            return nombreCliente;
+        }
     }
 
     public static List<Compra> compras = new ArrayList<>();
 
+    // REGISTRAR COMPRA
     public static void registrarCompra(
             List<String> productos, double total) {
 
@@ -57,24 +65,36 @@ public class HistorialData {
             usuario = "Desconocido";
         }
 
+        String nombreCliente = usuario;
+
+        // Buscar nombre completo del cliente registrado
+        for (UsuarioData.Usuario cliente : UsuarioData.usuarios) {
+
+            if (cliente.getUsuario().equalsIgnoreCase(usuario)) {
+                nombreCliente = cliente.getNombre();
+                break;
+            }
+        }
+
         int numero = compras.size() + 1;
 
         Compra compra = new Compra(
                 numero,
                 productos,
                 total,
-                usuario
+                usuario,
+                nombreCliente
         );
 
         compras.add(compra);
     }
 
-    // Consultar todas las compras
+    // CONSULTAR TODAS LAS COMPRAS
     public static List<Compra> getTodasLasCompras() {
         return new ArrayList<>(compras);
     }
 
-    // Consultar compras de un cliente específico
+    // CONSULTAR COMPRAS DE UN CLIENTE
     public static List<Compra> getComprasPorUsuario(String usuario) {
 
         List<Compra> resultado = new ArrayList<>();
@@ -89,7 +109,7 @@ public class HistorialData {
         return resultado;
     }
 
-    // El administrador ve todas; el cliente solo las suyas
+    // COMPRAS VISIBLES SEGÚN EL ROL
     public static List<Compra> getComprasVisibles() {
 
         if (SesionData.esAdministrador()) {

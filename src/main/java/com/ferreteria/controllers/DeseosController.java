@@ -1,4 +1,5 @@
 
+
 package com.ferreteria.controllers;
 
 import com.ferreteria.Main;
@@ -26,13 +27,19 @@ public class DeseosController {
     @FXML
     private FlowPane panelDeseos;
 
+    // INICIALIZAR LISTA DE DESEOS
     @FXML
     public void initialize() {
 
         Platform.runLater(() -> {
 
             if (!SesionData.esCliente()) {
-                abrirVentana("/fxml/Login.fxml", "Inicio de sesión");
+
+                mostrarMensaje(
+                        "Acceso denegado",
+                        "La lista de deseos es exclusiva para clientes."
+                );
+
                 return;
             }
 
@@ -40,6 +47,7 @@ public class DeseosController {
         });
     }
 
+    // CARGAR PRODUCTOS DE LA LISTA
     private void cargarDeseos() {
 
         panelDeseos.getChildren().clear();
@@ -51,13 +59,14 @@ public class DeseosController {
             tarjeta.setPrefWidth(200);
 
             tarjeta.setStyle(
-                "-fx-background-color: white;" +
-                "-fx-padding: 15;" +
-                "-fx-background-radius: 10;" +
-                "-fx-border-color: #dddddd;" +
-                "-fx-border-radius: 10;"
+                    "-fx-background-color: white;"
+                    + "-fx-padding: 15;"
+                    + "-fx-background-radius: 10;"
+                    + "-fx-border-color: #dddddd;"
+                    + "-fx-border-radius: 10;"
             );
 
+            // IMAGEN
             ImageView imagen = new ImageView();
 
             imagen.setFitWidth(150);
@@ -68,30 +77,34 @@ public class DeseosController {
                     && !producto.getImagen().isBlank()) {
 
                 try {
+
                     imagen.setImage(new Image(
-                        new java.io.File(producto.getImagen())
-                            .toURI().toString()
+                            new java.io.File(producto.getImagen())
+                                    .toURI().toString()
                     ));
 
                 } catch (Exception e) {
+
                     System.out.println(
-                        "No se pudo cargar la imagen."
+                            "No se pudo cargar la imagen."
                     );
                 }
             }
 
+            // INFORMACIÓN DEL PRODUCTO
             Label nombre = new Label(producto.getNombre());
 
             Label precio = new Label(
-                String.format("$%,.0f", producto.getPrecio())
+                    String.format("$%,.0f", producto.getPrecio())
             );
 
             Label stock = new Label(
-                "Stock: " + producto.getStock()
+                    "Stock: " + producto.getStock()
             );
 
+            // BOTÓN AGREGAR AL CARRITO
             Button btnCarrito = new Button(
-                "AGREGAR AL CARRITO"
+                    "AGREGAR AL CARRITO"
             );
 
             btnCarrito.setMaxWidth(Double.MAX_VALUE);
@@ -99,7 +112,10 @@ public class DeseosController {
             btnCarrito.setOnAction(e -> {
 
                 if (!SesionData.esCliente()) {
-                    mostrarMensaje("Debes iniciar sesión como cliente.");
+                    mostrarMensaje(
+                            "Acceso denegado",
+                            "Debes iniciar sesión como cliente."
+                    );
                     return;
                 }
 
@@ -108,17 +124,20 @@ public class DeseosController {
                     CarritoData.agregar(producto);
 
                     mostrarMensaje(
-                        "Producto agregado al carrito."
+                            "Producto agregado",
+                            "Producto agregado al carrito."
                     );
 
                 } else {
 
                     mostrarMensaje(
-                        "Este producto no tiene existencias."
+                            "Sin existencias",
+                            "Este producto no tiene existencias."
                     );
                 }
             });
 
+            // BOTÓN ELIMINAR
             Button btnEliminar = new Button("ELIMINAR");
 
             btnEliminar.setMaxWidth(Double.MAX_VALUE);
@@ -126,7 +145,10 @@ public class DeseosController {
             btnEliminar.setOnAction(e -> {
 
                 if (!SesionData.esCliente()) {
-                    mostrarMensaje("Debes iniciar sesión como cliente.");
+                    mostrarMensaje(
+                            "Acceso denegado",
+                            "Debes iniciar sesión como cliente."
+                    );
                     return;
                 }
 
@@ -136,59 +158,60 @@ public class DeseosController {
             });
 
             tarjeta.getChildren().addAll(
-                imagen,
-                nombre,
-                precio,
-                stock,
-                btnCarrito,
-                btnEliminar
+                    imagen,
+                    nombre,
+                    precio,
+                    stock,
+                    btnCarrito,
+                    btnEliminar
             );
 
             panelDeseos.getChildren().add(tarjeta);
         }
 
+        // LISTA VACÍA
         if (DeseosData.getDeseos().isEmpty()) {
 
             panelDeseos.getChildren().add(
-                new Label(
-                    "No tienes productos en tu lista de deseos."
-                )
+                    new Label(
+                            "No tienes productos en tu lista de deseos."
+                    )
             );
         }
     }
 
+    // VOLVER AL MENÚ DEL CLIENTE
     @FXML
     private void volverMenu() {
 
-        if (!SesionData.esCliente()) {
-
-            SesionData.cerrarSesion();
+        if (SesionData.esCliente()) {
 
             abrirVentana(
-                "/fxml/Login.fxml",
-                "Inicio de sesión"
+                    "/fxml/MenuCliente.fxml",
+                    "Menú de clientes"
             );
 
-            return;
-        }
+        } else {
 
-        abrirVentana(
-            "/fxml/MenuCliente.fxml",
-            "Menú de clientes"
-        );
+            mostrarMensaje(
+                    "Acceso denegado",
+                    "Esta opción es exclusiva para clientes."
+            );
+        }
     }
 
+    // ABRIR VENTANAS
     private void abrirVentana(String ruta, String titulo) {
 
         try {
 
             Parent root = FXMLLoader.load(
-                Main.class.getResource(ruta)
+                    Main.class.getResource(ruta)
             );
 
             Stage stage = (Stage) panelDeseos
-                .getScene()
-                .getWindow();
+                    .getScene()
+                    .getWindow();
 
             stage.setScene(new Scene(root));
             stage.setTitle(titulo);
@@ -197,20 +220,25 @@ public class DeseosController {
         } catch (Exception e) {
 
             mostrarMensaje(
-                "Error al abrir la ventana: " + e.getMessage()
+                    "Error",
+                    "No se pudo abrir la ventana: "
+                    + e.getMessage()
             );
 
             e.printStackTrace();
         }
     }
 
-    private void mostrarMensaje(String mensaje) {
+    // MOSTRAR MENSAJES
+    private void mostrarMensaje(
+            String titulo,
+            String mensaje) {
 
         Alert alerta = new Alert(
-            Alert.AlertType.INFORMATION
+                Alert.AlertType.INFORMATION
         );
 
-        alerta.setTitle("Lista de deseos");
+        alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensaje);
         alerta.showAndWait();

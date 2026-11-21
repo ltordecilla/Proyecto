@@ -7,23 +7,76 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
+<AnchorPane prefHeight="525.0"
+            prefWidth="631.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.ferreteria.controllers.MenuClienteController">
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="477.0" fitWidth="520.0" layoutX="51.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Hardware%20Store%20Workshop%20Display.png" />
-         </image>
-      </ImageView>
-      <VBox alignment="CENTER" layoutX="76.0" layoutY="78.0" spacing="20" style="-fx-padding: 30;">
-         <children>
-            <Label style="-fx-font-size: 25px; -fx-font-weight: bold;" text="MENÚ DEL CLIENTE" textFill="WHITE" />
-            <Button onAction="#abrirCatalogo" prefHeight="45" prefWidth="320" text="VER CATÁLOGO DE PRODUCTOS" />
-            <Button onAction="#abrirCarrito" prefHeight="45" prefWidth="320" text="MI CARRITO" />
-            <Button onAction="#abrirDeseos" prefHeight="45" prefWidth="320" text="MI LISTA DE DESEOS" />
-            <Button onAction="#abrirHistorial" prefHeight="45" prefWidth="320" text="MI HISTORIAL DE COMPRAS" />
-            <Button onAction="#cerrarSesion" prefHeight="45" prefWidth="320" style="-fx-background-color: #c62828; -fx-text-fill: white;" text="CERRAR SESIÓN" />
-         </children>
-      </VBox>
-   </children>
+    <children>
+
+        <!-- IMAGEN DE FONDO -->
+        <ImageView fitHeight="525.0"
+                   fitWidth="631.0"
+                   layoutX="0.0"
+                   layoutY="0.0"
+                   preserveRatio="false"
+                   mouseTransparent="true">
+
+            <image>
+                <Image url="@../images/Hardware%20Store%20Workshop%20Display.png"/>
+            </image>
+
+        </ImageView>
+
+        <!-- PANEL DEL MENÚ -->
+        <VBox alignment="CENTER"
+              layoutX="76.0"
+              layoutY="65.0"
+              prefWidth="480.0"
+              spacing="20.0"
+              style="-fx-padding: 30;
+                     -fx-background-color: rgba(20,20,20,0.78);
+                     -fx-background-radius: 12;">
+
+            <children>
+
+                <Label text="MENÚ DEL CLIENTE"
+                       style="-fx-font-size: 25px;
+                              -fx-font-weight: bold;
+                              -fx-text-fill: white;"/>
+
+                <Button onAction="#abrirCatalogo"
+                        prefHeight="45.0"
+                        prefWidth="320.0"
+                        text="VER CATÁLOGO DE PRODUCTOS"/>
+
+                <Button onAction="#abrirCarrito"
+                        prefHeight="45.0"
+                        prefWidth="320.0"
+                        text="MI CARRITO"/>
+
+                <Button onAction="#abrirDeseos"
+                        prefHeight="45.0"
+                        prefWidth="320.0"
+                        text="MI LISTA DE DESEOS"/>
+
+                <Button onAction="#abrirHistorial"
+                        prefHeight="45.0"
+                        prefWidth="320.0"
+                        text="MI HISTORIAL DE COMPRAS"/>
+
+                <Button onAction="#cerrarSesion"
+                        prefHeight="45.0"
+                        prefWidth="320.0"
+                        text="CERRAR SESIÓN"
+                        style="-fx-background-color: #c62828;
+                               -fx-text-fill: white;"/>
+
+            </children>
+        </VBox>
+
+    </children>
+
 </AnchorPane>
+
